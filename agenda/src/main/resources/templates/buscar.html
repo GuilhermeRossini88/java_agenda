@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Buscar Cadastro</title>
+</head>
+<body>
+<h2>Buscar Cadastro por ID</h2>
+
+<form th:action="@{/buscar}" method="post">
+    <label for="id">Digite o ID do cadastro:</label>
+    <input type="number" name="id" id="id" required />
+    <button type="submit">Buscar</button>
+</form>
+
+<hr>
+
+<div th:if="${cadastro != null}">
+    <h3>Resultado:</h3>
+    <p><strong>ID:</strong> <span th:text="${cadastro.id}"></span></p>
+    <p><strong>Nome:</strong> <span th:text="${cadastro.nome}"></span></p>
+    <p><strong>Email:</strong> <span th:text="${cadastro.email}"></span></p>
+</div>
+
+<div th:if="${mensagemErro != null}">
+    <p th:text="${mensagemErro}" style="color: red;"></p>
+</div>
+
+<a th:href="@{/}" style="margin-top: 20px; display: inline-block;">
+    <button type="button">Voltar</button>
+</a>
+</body>
+</html>

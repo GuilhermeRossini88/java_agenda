@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Deletar Cadastro</title>
+</head>
+<body>
+<h2>Deletar Cadastro</h2>
+
+<form th:action="@{/deletar}" method="post">
+    <label for="id">Digite o ID do cadastro:</label>
+    <input type="number" name="id" id="id" required />
+
+    <button type="submit">Deletar</button>
+    <a th:href="@{/}" style="margin-left: 10px; text-decoration: none;">
+        <button type="button">Voltar</button>
+    </a>
+</form>
+
+</body>
+</html>

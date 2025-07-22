@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Cadastros</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+
+</head>
+<body>
+<h2 style="text-align: center;">Lista de Cadastros</h2>
+
+<table>
+    <thead>
+    <tr>
+        <th>Nome</th>
+        <th>Email</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="cadastro : ${cadastros}">
+        <td th:text="${cadastro.nome}">Nome</td>
+        <td th:text="${cadastro.email}">Email</td>
+    </tr>
+    </tbody>
+</table>
+
+<div style="text-align: center;">
+    <a href="/">
+        <button type="button">Voltar</button>
+    </a>
+</div>
+</body>
+</html>

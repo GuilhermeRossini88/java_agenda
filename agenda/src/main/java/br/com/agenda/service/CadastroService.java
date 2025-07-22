@@ -19,7 +19,7 @@ public class CadastroService {
         return cadastroRepository.save(cadastro);
 
     }
-    public Optional<Cadastro> buscarPorId(Long id) {
+    public Optional<Cadastro> buscar(Long id) {
         return cadastroRepository.findById(id);
     }
     public void deletar(Long id) {
