@@ -66,7 +66,41 @@ public class CadastroController {
 
         return "buscar";
     }
-}
 
+    @GetMapping("/alterar")
+    public String exibirFormularioBuscar() {
+        return "alterar";
+    }
+    @PostMapping("/buscar-id")
+    public String buscarParaAlterar(@RequestParam("id") Long id, Model model) {
+        Optional<Cadastro> cadastroOptional = cadastroService.buscar(id);
+        if (cadastroOptional.isPresent()) {
+            model.addAttribute("cadastro", cadastroOptional.get());
+        } else {
+            model.addAttribute("erro", "Cadastro não encontrado.");
+        }
+        return "alterar";
+    }
+
+    @PostMapping("/alterar")
+    public String salvarAlteracao(@RequestParam("id") Long id,
+                                  @RequestParam("nome") String nome,
+                                  @RequestParam("email") String email,
+                                  Model model) {
+
+        Optional<Cadastro> cadastroOptional = cadastroService.buscar(id);
+        if (cadastroOptional.isPresent()) {
+            Cadastro cadastro = cadastroOptional.get();
+            if (!nome.isBlank()) cadastro.setNome(nome);
+            if (!email.isBlank()) cadastro.setEmail(email);
+            cadastroService.salvar(cadastro);
+            model.addAttribute("mensagem", "Cadastro alterado com sucesso!");
+            model.addAttribute("cadastro", cadastro);
+        } else {
+            model.addAttribute("erro", "Cadastro não encontrado.");
+        }
+        return "alterar";
+    }
+}
 
 
